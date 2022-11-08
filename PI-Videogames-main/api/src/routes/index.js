@@ -1,12 +1,13 @@
-const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+const express = require ('express');
+const axios = require ('axios');
+const {API_KEY} = process.env;
 
 
-const router = Router();
+const router = express.Router();
+//Routes
+const videogames = require ('./videogames');
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
+router.use('/videogames', videogames);
 
 module.exports = router;
+
