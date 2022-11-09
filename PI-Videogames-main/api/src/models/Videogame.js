@@ -27,12 +27,12 @@ module.exports = (sequelize) => {
     platforms: {
       type: DataTypes.STRING,
       allowNull: false
-    },
+    }/*,
     createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       default: true
-    }
+    } //Para diferenciar de los que creamos con base de dato*/
   }, 
   {
     timestamp: false
