@@ -1,5 +1,6 @@
 const { Router } = require ('express');
 const axios = require('axios');
+require('dotenv').config();
 const { API_KEY } = process.env;
 const { Videogame, Genre } = require('../db');
 
@@ -41,7 +42,7 @@ const getAllGames = async () => {
     return totalInfo;
 }
 
-router.get('/videogames', async (req, res) => {
+router.get('/', async (req, res) => {
     const name = req.query.name; //Incluyo la busqueda por query en la ruta
     let totalVideogames = await getAllGames();
     if (name) {
@@ -54,6 +55,15 @@ router.get('/videogames', async (req, res) => {
     }
 })
 
-
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    const totalVG =  await getAllGames();
+    if (id) {
+        let videogameID = await totalVG.filter(el => el.id == id)
+        videogameID.lenght ?
+        res.status(200).json(videogameID) :
+        res.status(404).send('Personaje no encontrado');
+    }
+})
 
 module.exports = router;

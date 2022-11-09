@@ -1,13 +1,17 @@
 const express = require ('express');
 const axios = require ('axios');
-const {API_KEY} = process.env;
 
 
 const router = express.Router();
-//Routes
+
+//ROUTES
 const videogames = require ('./videogames');
+const genres = require ('./genres');
+const videogamepost = require ('./videogamepost');
 
 router.use('/videogames', videogames);
+router.use('/genres', genres);
+router.use('/videogamepost', videogamepost);
 
 module.exports = router;
 
