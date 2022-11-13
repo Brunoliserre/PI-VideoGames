@@ -14,6 +14,7 @@ const getGamesInfo = async () => {
             rating: el.rating,
             platforms: el.platforms.map(el => el),
             genres: el.genres.map(el => el),
+            background_image: el.background_image
         };
     });
     return apiInfo;

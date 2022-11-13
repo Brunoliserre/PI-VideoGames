@@ -21,18 +21,21 @@ module.exports = (sequelize) => {
     releaseDate: {
       type: DataTypes.DATEONLY
     },
-    raiting: {
+    rating: {
       type: DataTypes.INTEGER
     },
     platforms: {
       type: DataTypes.STRING,
       allowNull: false
-    }/*,
+    },
     createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       default: true
-    } //Para diferenciar de los que creamos con base de dato*/
+    }, //Para diferenciar de los que creamos con base de dato
+    background_image: {
+      type: DataTypes.TEXT
+    }
   }, 
   {
     timestamp: false
