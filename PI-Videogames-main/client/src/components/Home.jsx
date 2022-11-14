@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVideogames, filterByGenre, filterCreated, alphabeticalOrder, orderByRating } from '../actions';
+import { getVideogames, filterByGenre, filterCreated, alphabeticalOrder, orderByRating, getGenres } from '../actions';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import Pagination from './Pagination';
+import Searchbar from './SearchBar';
 
 export default function Home () {
 
     const dispatch = useDispatch();
-    const allVideogames = useSelector((state) => state.videogames)
+    const allVideogames = useSelector((state) => state.videogames) //Almaceno todo lo que está en el state videogames
     const [orderAlph, setAlphaOrdered] = useState(''); //Estado local para el ordenamiento alfabético
     const [orderRating, setRatingOrder] = useState(''); //Estado local para el ordenamiento por rating
-
+    const genres = useSelector((state) => state.genres)
 
     useEffect (() => {
         dispatch(getVideogames());
-        console.log(getVideogames)
+        dispatch(getGenres());
     },[dispatch])
     
 
@@ -33,7 +34,8 @@ export default function Home () {
     //Handle Refresh
     let handleClick = (e) => {
         e.preventDefault();
-        dispatch(getVideogames());
+        dispatch(getVideogames())
+        setCurrentPage(1);
     }
 
     //Handle Filtro Genero
@@ -64,57 +66,59 @@ export default function Home () {
 
     return (
         <div>
+            
             <Link to='/videogames'>Create Videogames</Link>
             <h1>VIDEOGAMES</h1>
             <button onClick={e=>{handleClick(e)}}>
                 Reload Videogames
             </button>
             <div>
+                {/*Ordenamiento Alfabético*/}
                 <select onChange={e => handleAlphaSort(e)}>
+                    <option default>ALPHABETICALLY ORDERED</option>
                     <option value='asc'>A-Z</option>
                     <option value='desc'>Z-A</option>
                 </select>
+                {/*Ordenamiento por Rating*/}
                 <select onChange={e => handleRatingSort(e)}>
-                    <option value='asc'>A-Z</option>
-                    <option value='desc'>Z-A</option>
+                    <option default>SORT BY RATING</option>
+                    <option value='asc'>Best Rated</option>
+                    <option value='desc'>Worst Rated</option>
                 </select>
+                {/*Filtrado por Genre*/}
                 <select onChange={e => handleFilterGenre(e)}>
-                    <option value='All'>All</option>
-                    <option value='Indie'>Indie</option>
-                    <option value='Shooter'>Shooter</option>
-                    <option value='Simulation'>Simulation</option>
-                    <option value='Racing'>Racing</option>
-                    <option value='Massively Multiplayer'>MMO</option>
-                    <option value='Strategy'>Strategy</option>
-                    <option value='Puzzle'>Puzzle</option>
-                    <option value='Sports'>Sports</option>
-                    <option value='Adventure'>Adventure</option>
-                    <option value='Arcade'>Arcade</option>
-                    <option value='Fighting'>Fighting</option>
-                    <option value='RPG'>RPG</option>
-                    <option value='Casual'>Casual</option>
-                    <option value='Platformer'>Platformer</option>
+                <option value='All' default>All</option>
+                        {genres.map((g) => (
+                            <option key={g.name} value={g.name}>{g.name}</option>
+                        ))}
                 </select>
+                {/*Filtrado por Creador*/}
                 <select onChange={e => handleFilterCreated(e)}>
-                    <option value='createdInDB'>Creado</option>
-                    <option value='apiDB'>Existente</option>
+                    <option default>CREATED BY...</option>
+                    <option value='createdInDB'>User</option>
+                    <option value='apiDB'>API</option>
                 </select>
 
+                {/*Paginación*/}
                 <Pagination
                  videogamesPerPage = {videogamesPerPage}
                  allVideogames = {allVideogames.length}
                  pagination = {pagination}
                  />
 
-                {currentVideogames?.map((v) => {
-                    return (
-                        <div>
-                            <Link to={'/home/' + v.id}>
-                                <Card name={v.name} image={v.image} genres={v.genres} key={v.id}/>
-                            </Link>
-                        </div>
-                    )
-                })}
+                {/*Searchbar*/}
+                <Searchbar/>
+
+                {/*Cards*/}
+                {
+                    currentVideogames?.map((game) => {
+                        return (
+                                game.error? <div>Videogame not found</div> :
+                                <Card key={game.id} name={game.name} image={game.image} genres={game.genres} rating={game.rating} id={game.id}/>
+                        );
+                    })
+                }
+                
             </div>
         </div>
         

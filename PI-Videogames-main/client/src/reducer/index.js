@@ -1,5 +1,7 @@
 const initialState = {
-    videogames : []
+    allVideogames : [],
+    videogames : [],
+    genres: [],
 };
 
 export default function rootReducer (state= initialState, action){
@@ -7,21 +9,26 @@ export default function rootReducer (state= initialState, action){
         case 'GET_VIDEOGAMES':
             return{
                 ...state,
-                videogames: [...state.videogames, action.payload]
-            }
+                videogames: action.payload
+            };
+        case "GET_GENRES":
+            return {
+                ...state,
+                genres: action.payload,
+            };
         case 'FILTER_BY_GENRE':
-            const allVideogames = state.allVideogames
-            const ratingFiltered = action.payload === 'All' ? allVideogames : allVideogames.filter(el => el.genres === action.payload)
+            const allVideogamesGenre = state.allVideogames
+            const genreFiltered = action.payload === 'All' ? allVideogamesGenre : allVideogamesGenre.filter((game) => game.genres.includes(action.payload))
             return{
                 ...state,
-                videogames: ratingFiltered
-            }
+                videogames: genreFiltered
+            };
         case 'FILTER_CREATED':
             const createdFilter = action.payload === 'created' ? state.allGames.filter(el => el.createdInDb) : state.allVideogames.filter(el => !el.createdInDb)
             return {
                 ...state,
                 videogames: action.payload === 'All' ? state.allVideogames : createdFilter
-            }     
+            };     
         case 'ALPHABETICAL_ORDER':
             let sortedArr = action.payload === 'asc' ?
                 state.videogames.sort(function(a,b) {
@@ -45,9 +52,9 @@ export default function rootReducer (state= initialState, action){
             return {
                 ...state,
                 characters: sortedArr
-            } 
+            }; 
             case 'ORDER_BY_RATING':
-            let sortedArr2 = action.payload === 'asc' ?
+            let sortedArr2 = action.payload === 'desc' ?
                 state.videogames.sort(function(a,b) {
                     if (a.rating > b.rating) {
                         return 1;
@@ -69,13 +76,17 @@ export default function rootReducer (state= initialState, action){
             return {
                 ...state,
                 characters: sortedArr2
-            }   
+            };   
+            case 'POST_VIDEOGAME':
+                return {
+                    ...state,
+                };
             case 'GET_NAME_VIDEOGAMES':
                 return {
                     ...state,
                     videogames: action.payload
-                }            
+                };            
             default:
                  return {...state}        
-    }    
+    };    
 };

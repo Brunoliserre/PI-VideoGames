@@ -1,19 +1,50 @@
 import axios from 'axios';
 
 export function getVideogames(){
-    return async function(dispatch){
-        let json = await axios.get('http://localhost:3001/videogames');
-        return dispatch({
-            type: 'GET_VIDEOGAMES', 
-            payload: json.data 
-        })
+    return (dispatch) => {
+        fetch('http://localhost:3001/videogames')
+         .then((res) => res.json())
+         .then((json) => {
+            dispatch({
+                type: 'GET_VIDEOGAMES',
+                payload: json,
+            })
+         })
     }
 };
 
-export function filterByGenre(payload){
+export function getGenres(){
+    return (dispatch) => {
+        fetch('http://localhost:3001/genres')
+         .then((res) => res.json())
+         .then((json) => {
+            dispatch({
+                type: 'GET_GENRES',
+                payload: json,
+            })
+         })
+    }
+}
+
+export function getNameVideogames(name){
+    return async function (dispatch){
+        try {
+            let json = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+            return dispatch({
+                type: 'GET_NAME_VIDEOGAMES',
+                payload: json.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+};
+
+
+export function filterByGenre(genre){
     return {
             type: 'FILTER_BY_GENRE', 
-            payload
+            payload: genre
         }    
 };
 
@@ -38,33 +69,37 @@ export function orderByRating(payload){
     }
 };
 
-export function getNameVideogames(name){
-    return async function (dispatch){
-        try {
-            let json = await axios.get('http://localhost:3001/videogames?name=' + name)
-            return dispatch({
-                type: 'GET_NAME_VIDEOGAMES',
-                payload: json.data
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-};
+export function postVideogame(payload) {
+    return async (dispatch) => {
+      const response = await axios.post(
+        `http://localhost:3001/videogame`,
+        payload
+      );
+      return response;
+    };
+  };
+
+  export function getDetail(id) {
+    return (dispatch) => {
+      fetch(`http://localhost:3001/videogame/${id}`)
+        .then((response) => response.json())
+        .then((json) => {
+          dispatch({
+            type: "GET_DETAILS",
+            payload: json,
+          });
+        });
+    };
+  }
+  
+  export function resetDetail() {
+    return (dispatch) => {
+      dispatch({
+        type: "RESET_DETAIL",
+      });
+    };
+  }
 
 
 
 
-/*export function addVideogame(payload) {
-    let post = {
-        name: payload.name,
-        description: payload.description,
-        release: payload.release,
-        raiting: payload.raiting,
-        platforms: payload.platforms,
-        genres: payload.genres
-    }
-    return function(){
-        axios.post('http://localhost:3001/videogames', post)
-    }
-}*/
