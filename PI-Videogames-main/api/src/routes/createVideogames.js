@@ -23,14 +23,15 @@ router.post("/", async (req, res) => {
       platforms: platforms,
     }); 
     //Busco cada Genre en la DB y se los agrego a newGame
-    genres.forEach(async (g) => {
+    genres.forEach(async(g) => {
       let genresGame = await Genre.findOne({ where: { name: g } });
       await newGame.addGenre(genresGame);
     });
+
     res.send("Videogame created successfully!");
-  } catch (e) {
+    } catch (e) {
     res.status(404).send(e.message);
-  }
+    }
 });
 
 module.exports = router;

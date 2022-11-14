@@ -22,15 +22,14 @@ module.exports = (sequelize) => {
       type: DataTypes.DATEONLY
     },
     rating: {
-      type: DataTypes.INTEGER
+      type: DataTypes.DECIMAL
     },
     platforms: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       default: true
     }, //Para diferenciar de los que creamos con base de dato
     image: {
