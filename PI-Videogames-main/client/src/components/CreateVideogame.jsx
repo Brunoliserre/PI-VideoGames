@@ -1,10 +1,10 @@
 import React from "react";
-import { useState, useEffect} from 'react-redux';
+import { useState, useEffect} from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { getGenres, getVideogames, postVideogame } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function CreateVideogame(){
+export default function CreateVideogame () {
     const dispatch = useDispatch();
     const history = useHistory();
     const genres = useSelector((state) => state.genres);

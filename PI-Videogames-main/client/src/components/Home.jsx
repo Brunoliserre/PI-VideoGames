@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVideogames, filterByGenre, filterCreated, alphabeticalOrder, orderByRating, getGenres } from '../actions';
-import { Link } from 'react-router-dom';
 import Card from './Card';
 import Pagination from './Pagination';
 import Searchbar from './SearchBar';
@@ -66,8 +65,6 @@ export default function Home () {
 
     return (
         <div>
-            
-            <Link to='/videogames'>Create Videogames</Link>
             <h1>VIDEOGAMES</h1>
             <button onClick={e=>{handleClick(e)}}>
                 Reload Videogames
@@ -89,7 +86,7 @@ export default function Home () {
                 <select onChange={e => handleFilterGenre(e)}>
                 <option value='All' default>All</option>
                         {genres.map((g) => (
-                            <option key={g.name} value={g.name}>{g.name}</option>
+                            <option key={g.name} value={g.name}>{g.name}</option>                            
                         ))}
                 </select>
                 {/*Filtrado por Creador*/}
@@ -115,6 +112,7 @@ export default function Home () {
                         return (
                                 game.error? <div>Videogame not found</div> :
                                 <Card key={game.id} name={game.name} image={game.image} genres={game.genres} rating={game.rating} id={game.id}/>
+                                
                         );
                     })
                 }

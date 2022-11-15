@@ -2,6 +2,7 @@ const initialState = {
     allVideogames : [],
     videogames : [],
     genres: [],
+    detail: []
 };
 
 export default function rootReducer (state= initialState, action){
@@ -24,11 +25,15 @@ export default function rootReducer (state= initialState, action){
                 videogames: genreFiltered
             };
         case 'FILTER_CREATED':
-            const createdFilter = action.payload === 'created' ? state.allGames.filter(el => el.createdInDb) : state.allVideogames.filter(el => !el.createdInDb)
+            const allVideogamesFBC = state.allVideogames;
+            const creatorFilter = action.payload === "false"
+          ? allVideogamesFBC.filter((game) => game.createdByUser === false)
+          : allVideogamesFBC.filter((game) => game.createdByUser === true);
             return {
                 ...state,
-                videogames: action.payload === 'All' ? state.allVideogames : createdFilter
-            };     
+                videogames:
+            action.payload === "All" ? state.allVideogames : creatorFilter,
+            };   
         case 'ALPHABETICAL_ORDER':
             let sortedArr = action.payload === 'asc' ?
                 state.videogames.sort(function(a,b) {
@@ -86,7 +91,17 @@ export default function rootReducer (state= initialState, action){
                     ...state,
                     videogames: action.payload
                 };            
+            case "GET_DETAILS":
+                return {
+                    ...state,
+                    detail: action.payload,
+                };
+            case "RESET_DETAIL":
+                return {
+                    ...state,
+                      detail: [],
+                    };
             default:
-                 return {...state}        
+                return {...state};     
     };    
 };

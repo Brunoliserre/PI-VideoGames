@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameVideogames } from "../actions";
+import { NavLink } from "react-router-dom";
 
 export default function Searchbar(){
     const dispatch = useDispatch();
@@ -19,13 +20,18 @@ export default function Searchbar(){
 
     return(
         <div>
-        <input 
-                    type='text' 
-                    value={name}
-                    placeholder='Search'
-                    onChange={(e) => handleInputChange(e)}
-        />
-                <button onClick={(e) => handleSubmit(e)}>🔎</button>
+           <NavLink to={'/videogame'}>
+                    <h3>CREATE VIDEOGAME</h3>
+                </NavLink>
+                <form>
+                    <input 
+                        type='text' 
+                        onChange={(e) => handleInputChange(e)}
+                        value={name}
+                        placeholder='Search...'
+                    />
+                    <button onClick={(e) => handleSubmit(e)}>GO!</button>
+                </form>
         </div>
     )
 }

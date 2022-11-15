@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {getDetail, resetDetail} from '../../actions';
+import {getDetail, resetDetail} from '../actions';
 
-export default function Detail(props){
+export default function Details(props){
     const dispatch = useDispatch();
 
     //ComponentDidMount
@@ -18,7 +18,7 @@ export default function Detail(props){
         return() => {
             dispatch(resetDetail())
         }
-    }, [dispatch])
+    }, [])
     
     return(
         <div>
