@@ -10,7 +10,8 @@ export default function rootReducer (state= initialState, action){
         case 'GET_VIDEOGAMES':
             return{
                 ...state,
-                videogames: action.payload
+                videogames: action.payload,
+                allVideogames: action.payload
             };
         case "GET_GENRES":
             return {
