@@ -92,8 +92,8 @@ export default function Home () {
                 {/*Filtrado por Creador*/}
                 <select onChange={e => handleFilterCreated(e)}>
                     <option default>CREATED BY...</option>
-                    <option value='createdInDB'>User</option>
-                    <option value='apiDB'>API</option>
+                    <option value='false'>API</option>
+                    <option value='true'>User</option>
                 </select>
 
                 {/*Paginación*/}

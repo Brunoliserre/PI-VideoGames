@@ -48,10 +48,10 @@ export function filterByGenre(genre){
         }    
 };
 
-export function filterCreated(payload){
+export function filterCreated(createdInDb){
     return {
         type: 'FILTER_CREATED',
-        payload
+        payload: createdInDb
     }
 };
 

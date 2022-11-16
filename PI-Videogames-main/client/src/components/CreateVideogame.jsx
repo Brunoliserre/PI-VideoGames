@@ -58,11 +58,29 @@ export default function CreateVideogame () {
         })
     }
 
+    //Hande para eliminar genero
+    const handleGenresDelete = (e) => {
+        setInput({
+            ...input,
+            genres: input.genres.filter(genre => genre !== e)
+        })
+    }
+
+    //Hande para eliminar plataforma
+    const handlePlatformsDelete = (e) => {
+        setInput({
+            ...input,
+            platforms: input.platforms.filter(platform => platform !== e)
+        })
+    }
+    
     //Handle submit
     const handleSubmit = (e) => {
         e.preventDefault();
 
-       /* if(!input.name){
+        
+
+        if(!input.name){
             return alert('Name is required');
         } else if(!input.description){
             return alert('Description is required');
@@ -74,7 +92,7 @@ export default function CreateVideogame () {
             return alert('At least one platform is required');
         } else if(!input.genres.length){
             return alert('At least one genre is required');
-        }*/
+        }
         
         dispatch(postVideogame(input));
 
@@ -100,7 +118,7 @@ export default function CreateVideogame () {
         <div>
             <Link to='/home'><button>Go back to home</button></Link>
             <h1>Create your Videogame</h1>
-            <form  type='submit' onSubmit={(e) => handleSubmit(e)}>
+            <form  onSubmit={(e) => handleSubmit(e)}>
                 <div>
                     <label>Name:</label>
                     <input 
@@ -126,27 +144,27 @@ export default function CreateVideogame () {
                     <label>Image:</label>
                     <input
                         type= 'text'
-                        value= {input.name}
-                        name= 'name'
+                        value= {input.text}
+                        name= 'image'
                         onChange={(e) => handleChange(e)}
                     />
                     <label>Rating:</label>
-                    <input
-                        type= 'number'
-                        value= {input.rating}
-                        name= 'number'
-                        onChange={(e) => handleChange(e)}
-                    />
+                    <input 
+                        type='number' 
+                        name='rating' 
+                        onChange={(e) => handleChange(e)} placeholder='1 - 5'></input>
+    
                     <label>Platforms:</label>
                     <div>
-                        <select onChange={(e) => handleSelectPlatforms(e)}></select>
+                        <select onChange={(e) => handleSelectPlatforms(e)}>
                             {
                             platformsSet.map(platform => (
                             <option key={platform} value={platform}>{platform}</option>
                             ))
                             }
-                        <select/>
+                        </select>
                     </div>
+                    <br/>
                     <label>Genres:</label>
                     <div>
                         <select onChange={(e) => handleSelectGenres(e)}>
@@ -158,8 +176,34 @@ export default function CreateVideogame () {
                         </select>
                     </div>
                 </div>
-
-                <button>CREATE</button>
+                <p >IF YOU WANT TO DELETE A GENRE OR PLATFORM, CLICK ON THE ONE YOU WANT TO DELETE</p>
+                <div>
+                    <div>
+                        <h3>GENRES SELECTED:</h3>
+                        <div>
+                            {
+                                input.genres.map(genre => (
+                                    <div>
+                                        <p onClick={() => handleGenresDelete(genre)}>{genre}</p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <h3>PLATFORMS SELECTED:</h3>
+                        <div>
+                            {
+                                input.platforms.map(platform => (
+                                    <div>
+                                        <p onClick={() => handlePlatformsDelete(platform)}>{platform}</p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+                <button type='submit' >CREATE</button>
             </form>
         </div>
 
