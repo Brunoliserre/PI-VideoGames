@@ -1,13 +1,29 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+import styles from '../styles/Landing.module.css';
+
 
 export default function Landing(){
+
+    const history = useHistory();
+    const handleClick = () => {
+        history.push('/home');
+    }
+
+
     return(
-        <>
-            <h1>Welcome</h1>
-            <Link to='/home'>
-                <button>Start</button>
-            </Link>
-        </>
+        <div className={styles.background}>
+            <h1 className={styles.title}>Welcome to the Videogame APP</h1>
+            <div className={styles.container}>            
+            <h2 className={styles.text}>Find your favorite videogame or create one!</h2>
+            <br/>
+            <h3>This project was created using React, Redux, Express, Sequelize</h3>
+                <div className={styles.centerButton}>
+                    <button className={styles.button} onClick={handleClick}>
+                        START  
+                    </button>
+                </div>
+            </div>
+        </div>
     )
 }

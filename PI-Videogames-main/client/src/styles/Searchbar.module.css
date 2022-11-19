@@ -1,0 +1,33 @@
+@import url('https://css.gg/search.css');
+
+.searchbarForm{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 30px;
+    margin-top: 30px;
+}
+
+.searchbarButton{
+    height: 30px;
+    width: 50px;
+    border-radius: 10px;
+    
+}
+
+.searchbarButton:hover{
+    cursor: pointer;
+}
+
+.searchbarInput{
+    width: 150px;
+    border-radius: 15px;
+    padding-left: 7px;
+    color: white;
+    background-color: black;
+    border: 2px solid white;
+    transition-duration: 0.5s;
+    font-weight: bolder;
+    font-size: 15px;    
+    font-family: monospace;
+}

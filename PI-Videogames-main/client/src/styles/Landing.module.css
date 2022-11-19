@@ -1,0 +1,76 @@
+@import url('https://fonts.cdnfonts.com/css/games');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.background {
+    margin-top: 0%;
+    min-height: 100vh;
+    background-image: url('./6tN9nVE-geek-wallpapers.png');
+    background-size: cover;
+    background-position: center center;
+}
+
+.container {
+    margin: auto;
+    height: 50%;
+    width: 50%;
+    right: 25%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    padding: 20px;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 40px;
+    font-family: 'Games', sans-serif;
+}
+
+h2 {    
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    font-family: monospace;
+    font-size: 25px;
+}
+
+h3 {    
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    font-family: monospace;
+    font-size: 18px;
+}
+
+.centerButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.button{
+    width: 130px;
+    height: 60px;
+    border-radius: 15px;
+    color: white;
+    background-color: black;
+    border: 2px solid white;
+    transition-duration: 0.5s;
+    font-weight: bolder;
+    font-size: 25px;    
+    font-family: monospace;
+}
+
+.button:hover{
+    background-color: white;
+    color:black;
+}

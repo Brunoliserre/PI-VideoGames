@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVideogames, filterByGenre, filterCreated, alphabeticalOrder, orderByRating, getGenres } from '../actions';
+import { useHistory } from 'react-router-dom';
 import Card from './Card';
 import Pagination from './Pagination';
 import Searchbar from './SearchBar';
+import styles from '../styles/Home.module.css';
 
 export default function Home () {
 
@@ -12,7 +14,8 @@ export default function Home () {
     const [orderAlph, setAlphaOrdered] = useState(''); //Estado local para el ordenamiento alfabético
     const [orderRating, setRatingOrder] = useState(''); //Estado local para el ordenamiento por rating
     const genres = useSelector((state) => state.genres)
-
+    const history = useHistory();
+    
     useEffect (() => {
         dispatch(getVideogames());
         dispatch(getGenres());
@@ -29,25 +32,31 @@ export default function Home () {
     const pagination = (pageNumber) => {
         setCurrentPage(pageNumber)
     }   
+    
 
-    //Handle Refresh
+    //HANDLE REFRESHVIDEOGAMES
     let handleClick = (e) => {
         e.preventDefault();
         dispatch(getVideogames())
         setCurrentPage(1);
     }
 
-    //Handle Filtro Genero
+    //HANDLE CREATEVIDEOGAMES
+    const handleClickCreate = () => {
+        history.push('/videogame');
+    }
+
+    //HANDLE GENREFILTER
     let handleFilterGenre = (e) => {
         dispatch(filterByGenre(e.target.value))
     }
 
-    //Handle Filtro Creado
+    //HANDLE CREATORFILTER
     let handleFilterCreated = (e) => {
         dispatch(filterCreated(e.target.value))
     }
 
-    //Handle Alpha Sort
+    //HANDLE ALPHASORT
     let handleAlphaSort= (e) => {
         e.preventDefault();
         dispatch(alphabeticalOrder(e.target.value))
@@ -55,7 +64,7 @@ export default function Home () {
         setAlphaOrdered(`Ordered ${e.target.value}`)
     }
 
-    //Handle Rating Sort
+    //HANDLE RATINGSORT
     let handleRatingSort= (e) => {
         e.preventDefault();
         dispatch(orderByRating(e.target.value))
@@ -64,50 +73,68 @@ export default function Home () {
     }
 
     return (
-        <div>
-            <h1>VIDEOGAMES</h1>
-            <button onClick={e=>{handleClick(e)}}>
-                Reload Videogames
-            </button>
-            <div>
-                {/*Ordenamiento Alfabético*/}
-                <select onChange={e => handleAlphaSort(e)}>
+        <div className={styles.background}>
+            <h1>VIDEOGAMES APP</h1>
+            
+            
+
+            <div className={styles.container}>                
+                {/*SORT*/}
+                <div className={styles.sort}>
+                {/*ALPHASORT*/}
+                <select onChange={e => handleAlphaSort(e)} className={styles.selectOrderSort}>
                     <option default>ALPHABETICALLY ORDERED</option>
                     <option value='asc'>A-Z</option>
                     <option value='desc'>Z-A</option>
                 </select>
-                {/*Ordenamiento por Rating*/}
-                <select onChange={e => handleRatingSort(e)}>
+                {/*RATINGSORT*/}
+                <select onChange={e => handleRatingSort(e)} className={styles.selectOrderSort}>
                     <option default>SORT BY RATING</option>
                     <option value='asc'>Best Rated</option>
                     <option value='desc'>Worst Rated</option>
                 </select>
-                {/*Filtrado por Genre*/}
-                <select onChange={e => handleFilterGenre(e)}>
+                </div>
+                {/*FILTERS*/}
+                <div className={styles.filters}>
+                {/*GENREFILTERS*/}
+                <select onChange={e => handleFilterGenre(e)} className={styles.selectOrderSort}>
                 <option value='All' default>All</option>
                         {genres.map((g) => (
                             <option key={g.name} value={g.name}>{g.name}</option>                            
                         ))}
-                </select>
-                {/*Filtrado por Creador*/}
-                <select onChange={e => handleFilterCreated(e)}>
+                </select>                
+                {/*CREATORFILTERS*/}
+                <select onChange={e => handleFilterCreated(e)} className={styles.selectOrderSort}>
                     <option default>CREATED BY...</option>
                     <option value='false'>API</option>
                     <option value='true'>User</option>
                 </select>
+                </div>                
+            </div>
 
-                {/*Paginación*/}
+            {/*RELOAD AND CREATE VIDEOGAMES*/}
+            <div className={styles.container2}>
+                <button onClick={e=>{handleClickCreate(e)}} className={styles.reloadCreate}>
+                Create Videogames
+                </button>
+                <button onClick={e=>{handleClick(e)}} className={styles.reloadCreate}>
+                Reload Videogames
+                </button>
+            </div>
+                
+                {/*SEARCHBAR*/}
+                <Searchbar/>
+
+                {/*PAGINATION*/}
                 <Pagination
                  videogamesPerPage = {videogamesPerPage}
                  allVideogames = {allVideogames.length}
                  pagination = {pagination}
                  />
 
-                {/*Searchbar*/}
-                <Searchbar/>
-
-                {/*Cards*/}
-                {
+                {/*CARDS*/}
+                 <div className={styles.containerCards}>
+                 {
                     currentVideogames?.map((game) => {
                         return (
                                 game.error? <div>Videogame not found</div> :
@@ -115,9 +142,8 @@ export default function Home () {
                                 
                         );
                     })
-                }
-                
-            </div>
+                 }
+                 </div>
         </div>
         
     )  

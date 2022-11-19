@@ -1,0 +1,102 @@
+@import url('https://fonts.cdnfonts.com/css/games');
+
+h1{
+    font-family: 'Games', sans-serif;
+    color: whitesmoke;
+    text-align: center;
+    padding: 2%;
+}
+
+.background{
+    background-image: url('./156992.webp');
+    background-size: cover;
+    background-position: center center;
+}
+
+.container{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.reloadCreate{
+    width: 150px;
+    height: 35px;
+    border-radius: 10px;
+    margin-right: 20px;
+    color: white;
+    background-color: black;
+    border: 2px solid white;
+    transition-duration: 0.5s;
+    font-weight: bolder;
+    font-size: 15px;    
+    font-family: monospace;
+}
+
+
+.container2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.reloadCreate:hover{
+    cursor: pointer;
+    background-color: white;
+    color:black;
+}
+
+.order{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.selectOrderSort{
+    border-radius: 10px;
+    height: 30px;
+    width: 200px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color:black;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    font-family: monospace;
+    font-size: 15px; 
+    font-weight: bolder;
+}
+
+.selectOrderSort:hover{
+    cursor: pointer;
+    background-color: white;
+    color:black;
+}
+
+.containerCards{
+    display: grid;
+    gap: 10px;
+    row-gap: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    width: auto;
+    margin-left: 10%;
+    margin-bottom: 2.5%;
+    padding-top: 5px;
+}
+
+.filters{
+    display: flex;    
+}
+
+.sort{
+    display: flex;    
+}
