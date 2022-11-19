@@ -1,8 +1,9 @@
 import React from "react";
 import { useState, useEffect} from 'react';
-import { Link, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { getGenres, getVideogames, postVideogame } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
+import styles from '../styles/CreateVideogames.module.css';
 
 export default function CreateVideogame () {
     const dispatch = useDispatch();
@@ -113,49 +114,93 @@ export default function CreateVideogame () {
         
     }
 
+    const handleClickHome = () => {
+        history.push('/home');
+    }
 
     return(
         <div>
-            <Link to='/home'><button>Go back to home</button></Link>
-            <h1>Create your Videogame</h1>
-            <form  onSubmit={(e) => handleSubmit(e)}>
-                <div>
-                    <label>Name:</label>
-                    <input 
+            <div className={styles.container}>
+            <h2 className={styles.formTitle}>CREATE YOUR VIDEOGAME</h2>
+            <div>
+                    <button className={styles.buttonHome} onClick={handleClickHome}>
+                        HOME
+                    </button>
+            </div>
+            </div>
+            <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>                
+                <p className={styles.formText}>Please Complete</p>
+                <p className={styles.formText2}>(The options with * are required)</p>
+                
+                {/*NAME*/}
+                <div className={styles.formContainer}>
+                    <div className={styles.formGroup}>                     
+                     <input className={styles.formInput}                     
                         type= 'text'
                         value= {input.name}
+                        placeholder=' '
                         name= 'name'
                         onChange={(e) => handleChange(e)}
-                    />
-                    <label>Description:</label>
-                    <input
+                     />  
+                     <label className={styles.labels}>Name:*</label>
+                     <span className={styles.formLine}></span>
+                     
+
+                    {/*DESCRIPTION*/}
+                    <div className={styles.formGroup}>
+                    <input className={styles.formInputDesc}
                         type= 'text'
                         value= {input.description}
+                        placeholder=' '
                         name= 'description'
                         onChange={(e) => handleChange(e)}
                     />
-                    <label>Released Date:</label>
-                    <input
+                    <label className={styles.labelsDesc}>Description:*</label>  
+                    <span className={styles.formLine}></span>
+                    </div>
+
+                    </div>
+                
+                    {/*RELEASE DATE*/}
+                    <div className={styles.formGroup}>
+                    <input className={styles.formInput}
                         type= 'date'
                         value= {input.releaseDate}
+                        placeholder=' '
                         name= 'releaseDate'
                         onChange={(e) => handleChange(e)}
                     />
-                    <label>Image:</label>
-                    <input
+                    <label className={styles.labels}>Release Date</label>
+                    <span className={styles.formLine}></span>
+                    </div>
+
+                    {/*IMAGE*/}
+                    <div className={styles.formGroup}>
+                    <input className={styles.formInput}
                         type= 'text'
                         value= {input.text}
+                        placeholder=' '
                         name= 'image'
                         onChange={(e) => handleChange(e)}
                     />
-                    <label>Rating:</label>
-                    <input 
+                    <label className={styles.labels}>Image:</label>
+                    <span className={styles.formLine}></span>
+                    </div>
+
+                    {/*RATING*/}
+                    <div className={styles.formGroup}>
+                    <input  className={styles.formInput}
                         type='number' 
                         name='rating' 
-                        onChange={(e) => handleChange(e)} placeholder='1 - 5'></input>
-    
-                    <label>Platforms:</label>
-                    <div>
+                        onChange={(e) => handleChange(e)} placeholder=''></input>
+                    <label className={styles.labels}>Rating:</label>
+                    <span className={styles.formLine}></span>
+                    </div>
+
+                    {/*PLATFORMS*/}
+                    <div className={styles.formGroup}>
+                    <label className={styles.labels}>Platforms:*</label>
+                    <div className={styles.platformGenre}>
                         <select onChange={(e) => handleSelectPlatforms(e)}>
                             {
                             platformsSet.map(platform => (
@@ -164,9 +209,13 @@ export default function CreateVideogame () {
                             }
                         </select>
                     </div>
-                    <br/>
-                    <label>Genres:</label>
-                    <div>
+                    <span className={styles.formLine}></span>
+                    </div>
+
+                    {/*GENRES*/}
+                    <div className={styles.formGroup}>
+                    <label className={styles.labels}>Genres:*</label>
+                    <div className={styles.platformGenre}>
                         <select onChange={(e) => handleSelectGenres(e)}>
                             {
                             genres.map(genre => (
@@ -175,16 +224,22 @@ export default function CreateVideogame () {
                             }
                         </select>
                     </div>
-                </div>
-                <p >IF YOU WANT TO DELETE A GENRE OR PLATFORM, CLICK ON THE ONE YOU WANT TO DELETE</p>
-                <div>
-                    <div>
+                    <span className={styles.formLine}></span>
+                    </div>
+                    
+                    {/*DELETE*/}
+                    <div className={styles.deleteText}>
+                    <p >PLATFORMS SELECTED. </p>
+                    <p> IF YOU WANT TO DELETE A GENRE OR PLATFORM, CLICK ON THE ONE YOU WANT TO DELETE</p>
+                    </div>
+                    <div className={styles.platformsAndGenresSelected}>
+                    <div className={styles.genreSelected}>
                         <h3>GENRES SELECTED:</h3>
                         <div>
                             {
                                 input.genres.map(genre => (
                                     <div>
-                                        <p onClick={() => handleGenresDelete(genre)}>{genre}</p>
+                                        <p className={styles.deleteGenreOrPlatform} onClick={() => handleGenresDelete(genre)}>{genre}</p>
                                     </div>
                                 ))
                             }
@@ -196,15 +251,20 @@ export default function CreateVideogame () {
                             {
                                 input.platforms.map(platform => (
                                     <div>
-                                        <p onClick={() => handlePlatformsDelete(platform)}>{platform}</p>
+                                        <p className={styles.deleteGenreOrPlatform} onClick={() => handlePlatformsDelete(platform)}>{platform}</p>
                                     </div>
                                 ))
                             }
                         </div>
                     </div>
                 </div>
-                <button type='submit' >CREATE</button>
+                </div>
+                
+                
+                <button className={styles.createButton} type='submit' >CREATE</button>
             </form>
+
+            
         </div>
 
 

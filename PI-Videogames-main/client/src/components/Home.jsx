@@ -41,7 +41,7 @@ export default function Home () {
         setCurrentPage(1);
     }
 
-    //HANDLE CREATEVIDEOGAMES
+    //HANDLE HISTORYVIDEOGAMES
     const handleClickCreate = () => {
         history.push('/videogame');
     }
@@ -125,12 +125,7 @@ export default function Home () {
                 {/*SEARCHBAR*/}
                 <Searchbar/>
 
-                {/*PAGINATION*/}
-                <Pagination
-                 videogamesPerPage = {videogamesPerPage}
-                 allVideogames = {allVideogames.length}
-                 pagination = {pagination}
-                 />
+                
 
                 {/*CARDS*/}
                  <div className={styles.containerCards}>
@@ -144,6 +139,13 @@ export default function Home () {
                     })
                  }
                  </div>
+
+                 {/*PAGINATION*/}
+                <Pagination
+                 videogamesPerPage = {videogamesPerPage}
+                 allVideogames = {allVideogames.length}
+                 pagination = {pagination}
+                 />
         </div>
         
     )  

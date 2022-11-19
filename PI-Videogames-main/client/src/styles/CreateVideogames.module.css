@@ -1,0 +1,168 @@
+@import url("//fonts.googleapis.com/css?family=Play");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace;
+    background-image: url('./wallpapersden.com_tiny-tina-s-wonderlands-gaming-background_1920x1080.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.form {
+   background-color: white;
+   margin: auto;
+   width: 90%;
+   max-width: 400px;
+   padding: 10px 10px;
+   border-radius: 10px;
+   box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
+   text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonHome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 30px;
+    border-radius: 15px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.buttonHome:hover{
+    background-color: white;
+    color:rgb(88, 24, 88);
+    font-weight: 400;
+}
+
+.formTitle {
+    color: white;
+    font-size: 45px;
+    font-family: Play;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.formText {
+    font-weight: 300;
+    font-family: monospace;
+    font-size: 25px;
+}
+
+.formContainer {
+    margin-top: 3em;
+    display: grid;
+    gap: 2.5em;
+}
+
+.formGroup {
+    position: relative;
+    color: #5757577e
+}
+
+.formInput {
+    width: 100%;
+    background: none;
+    color: #706c6c;
+    font-size: 1.2rem;
+    font-family: monospace;
+    padding: .6em .3em;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #5757577e;
+}
+
+.labels {
+    color: #5757577e;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    transform: translateY(10px);
+    transition: transform .5s, color .3s;
+    font-size: 1rem;
+}
+
+.formInputDesc {
+    width: 100%;
+    background: none;
+    color: #706c6c;
+    font-size: 1.2rem;
+    font-family: monospace;
+    margin-top: 30px;
+    margin-left: .3em;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #5757577e;
+}
+
+.labelsDesc {
+    color: #5757577e;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    transform: translateY(10px);
+    transition: transform .5s, color .3s;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+.formInput:focus + .labels,
+.formInput:not(:placeholder-shown) + .labels{
+    transform: translateY(-12px) scale(.7);
+    transform-origin: left top;
+    color: rgb(88, 24, 88);
+}
+
+.formInputDesc:focus + .labelsDesc,
+.formInputDesc:not(:placeholder-shown) + .labelsDesc{
+    transform: translateY(-3px) scale(.7);
+    transform-origin: left top;
+    color: rgb(88, 24, 88);
+}
+
+
+.deleteText {
+    font-weight: 300;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+.platformGenre{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 10px;
+}
+
+.deleteGenreOrPlatform{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid rgb(88, 24, 88);
+    margin-top: -20px;
+}
+
+.deleteGenreOrPlatform:hover{
+    color: red;
+}
+
+.deleteGenreOrPlatform:hover{
+    cursor: pointer;
+}

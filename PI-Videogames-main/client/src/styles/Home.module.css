@@ -2,15 +2,19 @@
 
 h1{
     font-family: 'Games', sans-serif;
-    color: whitesmoke;
+    color: white;
     text-align: center;
     padding: 2%;
+    font-size: 70px;
 }
 
 .background{
-    background-image: url('./156992.webp');
+    margin-top: 0%;
+    min-height: 100vh;
+    background-image: url('./wallpapersden.com_tiny-tina-s-wonderlands-gaming-background_1920x1080.jpg');
     background-size: cover;
     background-position: center center;
+    background-attachment: fixed;
 }
 
 .container{
@@ -60,9 +64,9 @@ h1{
 }
 
 .selectOrderSort{
-    border-radius: 10px;
-    height: 30px;
-    width: 200px;
+    border-radius: 15px;
+    height: 32px;
+    width: 210px;
     margin-right: 8px;
     display: flex;
     justify-content: center;
@@ -72,14 +76,12 @@ h1{
     border-radius: 10px;
     color: white;
     font-family: monospace;
-    font-size: 15px; 
+    font-size: 18px; 
     font-weight: bolder;
 }
 
 .selectOrderSort:hover{
     cursor: pointer;
-    background-color: white;
-    color:black;
 }
 
 .containerCards{
@@ -88,7 +90,8 @@ h1{
     row-gap: 40px;
     grid-template-columns: repeat(3, 1fr);
     width: auto;
-    margin-left: 10%;
+    margin-left: 15%;
+    margin-right: 5%;
     margin-bottom: 2.5%;
     padding-top: 5px;
 }

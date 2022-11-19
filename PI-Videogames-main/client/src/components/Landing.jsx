@@ -13,7 +13,7 @@ export default function Landing(){
 
     return(
         <div className={styles.background}>
-            <h1 className={styles.title}>Welcome to the Videogame APP</h1>
+            <h1 className={styles.title}>Welcome to my Videogame APP</h1>
             <div className={styles.container}>            
             <h2 className={styles.text}>Find your favorite videogame or create one!</h2>
             <br/>
