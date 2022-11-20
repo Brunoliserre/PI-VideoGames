@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect} from 'react';
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getGenres, getVideogames, postVideogame } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from '../styles/CreateVideogames.module.css';
+
 
 export default function CreateVideogame () {
     const dispatch = useDispatch();
@@ -30,12 +31,12 @@ export default function CreateVideogame () {
         dispatch(getVideogames());
     }, [dispatch]);
 
-    //Set de platforms
+    //PLATFORMS SET
     const platformsArray = [];
     allVideogames.map(game => game.platforms?.map(platform => platformsArray.push(platform)));
     let platformsSet = [...new Set(platformsArray)];
 
-    //Handle para ir llenando el estado con los cambios
+    //HANDLECHANGE
     const handleChange = (e) => {
         setInput({
             ...input,
@@ -43,7 +44,7 @@ export default function CreateVideogame () {
         })
     }
     
-    //Hande para ir cambiando el estado de genres
+    //HANDLE GENRES
     const handleSelectGenres = (e) => {
         setInput({
             ...input,
@@ -51,7 +52,7 @@ export default function CreateVideogame () {
         })
     }
 
-    //Hande para ir cambiando el estado de platforms
+    //HANDLE PLATFORMS STATE
     const handleSelectPlatforms = (e) => {
         setInput({
             ...input,
@@ -59,7 +60,7 @@ export default function CreateVideogame () {
         })
     }
 
-    //Hande para eliminar genero
+    //HANDLE DELETE GENRES
     const handleGenresDelete = (e) => {
         setInput({
             ...input,
@@ -67,7 +68,7 @@ export default function CreateVideogame () {
         })
     }
 
-    //Hande para eliminar plataforma
+    //HANDLE DELETE PLATFORMS
     const handlePlatformsDelete = (e) => {
         setInput({
             ...input,
@@ -75,18 +76,15 @@ export default function CreateVideogame () {
         })
     }
     
-    //Handle submit
+    //HANDLE SUBMIT
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        
-
+    
+        //VALIDATOR
         if(!input.name){
             return alert('Name is required');
         } else if(!input.description){
             return alert('Description is required');
-        } else if(!input.releaseDate){
-            return alert('Release date is required');
         } else if(!input.rating || input.rating < 1 || input.rating > 5){
             return alert('Enter a rating between 1 and 5');
         } else if(!input.platforms.length){
@@ -114,19 +112,20 @@ export default function CreateVideogame () {
         
     }
 
+    //HANDLE HOME
     const handleClickHome = () => {
         history.push('/home');
     }
 
     return(
-        <div>
+        <div className={styles.backgroundCreate} >
             <div className={styles.container}>
             <h2 className={styles.formTitle}>CREATE YOUR VIDEOGAME</h2>
             <div>
                     <button className={styles.buttonHome} onClick={handleClickHome}>
-                        HOME
+                        Home
                     </button>
-            </div>
+            
             </div>
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>                
                 <p className={styles.formText}>Please Complete</p>
@@ -192,7 +191,7 @@ export default function CreateVideogame () {
                     <input  className={styles.formInput}
                         type='number' 
                         name='rating' 
-                        onChange={(e) => handleChange(e)} placeholder=''></input>
+                        onChange={(e) => handleChange(e)} placeholder=' '></input>
                     <label className={styles.labels}>Rating:</label>
                     <span className={styles.formLine}></span>
                     </div>
@@ -229,24 +228,13 @@ export default function CreateVideogame () {
                     
                     {/*DELETE*/}
                     <div className={styles.deleteText}>
-                    <p >PLATFORMS SELECTED. </p>
-                    <p> IF YOU WANT TO DELETE A GENRE OR PLATFORM, CLICK ON THE ONE YOU WANT TO DELETE</p>
+                    <p>Platforms and Genres have been selected. </p>
+                    <p> If you want to remove an option, click on its name below</p>
                     </div>
                     <div className={styles.platformsAndGenresSelected}>
                     <div className={styles.genreSelected}>
-                        <h3>GENRES SELECTED:</h3>
-                        <div>
-                            {
-                                input.genres.map(genre => (
-                                    <div>
-                                        <p className={styles.deleteGenreOrPlatform} onClick={() => handleGenresDelete(genre)}>{genre}</p>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    </div>
                     <div>
-                        <h3>PLATFORMS SELECTED:</h3>
+                        <h3 className={styles.h3selected}>Platforms Selected:</h3>
                         <div>
                             {
                                 input.platforms.map(platform => (
@@ -257,13 +245,27 @@ export default function CreateVideogame () {
                             }
                         </div>
                     </div>
+                        <h3 className={styles.h3selected}>Genres Selected:</h3>
+                        <div>
+                            {
+                                input.genres.map(genre => (
+                                    <div>
+                                        <p className={styles.deleteGenreOrPlatform} onClick={() => handleGenresDelete(genre)}>{genre}</p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                        
+                    </div>                    
                 </div>
                 </div>
                 
-                
-                <button className={styles.createButton} type='submit' >CREATE</button>
+                <div className={styles.createCenter}>
+                <button className={styles.createButton} type='submit' >Create</button>
+                </div>
             </form>
 
+            </div>
             
         </div>
 

@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getDetail, resetDetail} from '../actions';
+import Loader from "./Loader";
 import styles from '../styles/Details.module.css';
 
 export default function Details(props){
@@ -24,10 +25,11 @@ export default function Details(props){
     return(
         <div className={styles.background}>
             {
+                videogame ?
                 <div>
                     <div  className={styles.container}>
-                    <h1>{videogame.name}</h1>
-                    <img src={videogame.image}></img>
+                    <p className={styles.name}>{videogame.name}</p>
+                    <img className={styles.image} src={videogame.image}></img>
                     </div>
                     <div className={styles.description} dangerouslySetInnerHTML={{ __html: videogame.description }}></div>
                     <div className={styles.container2}>
@@ -37,7 +39,10 @@ export default function Details(props){
                     <h5>PLATFORMS: {videogame.platforms}</h5>
                     </div>
                 </div>
-                
+                :
+                <div>
+                    <Loader />
+                </div>
             }
             <div className={styles.centerButton}>
             <Link to='/home'>

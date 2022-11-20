@@ -1,3 +1,5 @@
+@import url("//fonts.googleapis.com/css?family=Play");
+
 .searchbarForm{
     display: flex;
     justify-content: center;
@@ -7,34 +9,34 @@
 }
 
 .searchbarButton{
-    height: 33px;
-    width: 50px;
+    height: 35px;
+    width: 55px;
     margin-left: 2px;
     border-radius: 20px;
-    border: 2px solid white;
+    border: none;
     background-color: black;
     color: white;
     font-weight: bolder;
-    font-size: 15px;    
-    font-family: monospace;
+    font-size: 22px;    
+    font-family: Play;
 }
 
 .searchbarButton:hover{
     cursor: pointer;
-    background-color: white;
-    color:black;
+    background-color: black;
+    color: rgb(103, 26, 131);
 }
 
 .searchbarInput{
-    width: 150px;
-    height: 30px;
+    width: 180px;
+    height: 35px;
     border-radius: 15px;
-    padding-left: 7px;
+    padding-left: 8px;
     color: white;
     background-color: black;
-    border: 2px solid white;
+    border: 1.5px solid white;
     transition-duration: 0.5s;
-    font-weight: bolder;
-    font-size: 15px;    
-    font-family: monospace;
+    font-weight: 450;
+    font-size: 18px;    
+    font-family: Play;
 }

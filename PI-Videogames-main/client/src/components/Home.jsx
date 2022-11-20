@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Card from './Card';
 import Pagination from './Pagination';
 import Searchbar from './SearchBar';
+import Loader from './Loader';
 import styles from '../styles/Home.module.css';
 
 export default function Home () {
@@ -73,79 +74,89 @@ export default function Home () {
     }
 
     return (
+        
         <div className={styles.background}>
-            <h1>VIDEOGAMES APP</h1>
-            
+            <div className={styles.navContainer}>
+            <span className={styles.navTitle}>VIDEOGAMES APP</span>
+
+            {/*RELOAD AND CREATE VIDEOGAMES*/} 
+            <a>
+                <button onClick={e=>{handleClickCreate(e)}} className={styles.reloadCreate}>
+                Create Videogames
+                </button></a>
+            <a>
+                <button onClick={e=>{handleClick(e)}} className={styles.reloadCreate}>
+                Reload Videogames
+                </button>
+            </a>
+            {/*SEARCHBAR*/}
+            <p className={styles.searchbarNav}><Searchbar/></p>
+            </div>  
             
 
             <div className={styles.container}>                
-                {/*SORT*/}
-                <div className={styles.sort}>
+                <div className={styles.orderFilters}>
                 {/*ALPHASORT*/}
                 <select onChange={e => handleAlphaSort(e)} className={styles.selectOrderSort}>
-                    <option default>ALPHABETICALLY ORDERED</option>
+                    <option default>Order by</option>
                     <option value='asc'>A-Z</option>
                     <option value='desc'>Z-A</option>
-                </select>
-                {/*RATINGSORT*/}
-                <select onChange={e => handleRatingSort(e)} className={styles.selectOrderSort}>
-                    <option default>SORT BY RATING</option>
                     <option value='asc'>Best Rated</option>
                     <option value='desc'>Worst Rated</option>
-                </select>
-                </div>
-                {/*FILTERS*/}
-                <div className={styles.filters}>
+                </select>                
                 {/*GENREFILTERS*/}
                 <select onChange={e => handleFilterGenre(e)} className={styles.selectOrderSort}>
-                <option value='All' default>All</option>
+                <option value='All' default>All Genres</option>
                         {genres.map((g) => (
                             <option key={g.name} value={g.name}>{g.name}</option>                            
                         ))}
                 </select>                
                 {/*CREATORFILTERS*/}
                 <select onChange={e => handleFilterCreated(e)} className={styles.selectOrderSort}>
-                    <option default>CREATED BY...</option>
+                    <option default>Created by...</option>
                     <option value='false'>API</option>
                     <option value='true'>User</option>
                 </select>
                 </div>                
-            </div>
-
-            {/*RELOAD AND CREATE VIDEOGAMES*/}
-            <div className={styles.container2}>
-                <button onClick={e=>{handleClickCreate(e)}} className={styles.reloadCreate}>
-                Create Videogames
-                </button>
-                <button onClick={e=>{handleClick(e)}} className={styles.reloadCreate}>
-                Reload Videogames
-                </button>
-            </div>
-                
-                {/*SEARCHBAR*/}
-                <Searchbar/>
-
+            </div>               
                 
 
-                {/*CARDS*/}
-                 <div className={styles.containerCards}>
-                 {
+            {/*CARDS*/}                             
+                <div className={styles.containerCards}>
+                {   
+                    currentVideogames.length ?
                     currentVideogames?.map((game) => {
                         return (
-                                game.error? <div>Videogame not found</div> :
+                                game.error? <div className={styles.errorContainer}><h2 >Videogame not found</h2></div> 
+                                :
                                 <Card key={game.id} name={game.name} image={game.image} genres={game.genres} rating={game.rating} id={game.id}/>
-                                
                         );
-                    })
-                 }
-                 </div>
+                    })      
+                    
+                    :
+                    <div className={styles.loader}>
+                        <Loader />                        
+                    </div>
+                }
+                </div>
 
-                 {/*PAGINATION*/}
-                <Pagination
-                 videogamesPerPage = {videogamesPerPage}
-                 allVideogames = {allVideogames.length}
-                 pagination = {pagination}
-                 />
+            {/*PAGINATION*/}
+                <div>
+                {
+                    currentVideogames.length ? 
+                    <Pagination
+                    videogamesPerPage = {videogamesPerPage}
+                    allVideogames = {allVideogames.length}
+                    pagination = {pagination}
+                    />
+                    :
+                    <div className={styles.loader}>
+                        <Loader />                        
+                    </div>
+
+                }
+                </div>
+                
         </div>
         
     )  

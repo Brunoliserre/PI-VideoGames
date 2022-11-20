@@ -1,11 +1,35 @@
-@import url('https://fonts.cdnfonts.com/css/games');
+@import url("//fonts.googleapis.com/css?family=Play");
 
-h1{
-    font-family: 'Games', sans-serif;
-    color: white;
-    text-align: center;
-    padding: 2%;
-    font-size: 70px;
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    border: none;
+}
+
+.navContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    block-size: 75px;
+    box-shadow: 0px 10px 10px rgb(89, 27, 107);
+    background-color: black;
+}
+
+.navTitle{    
+    color: rgb(103, 26, 131);
+    font-family: 'Play';
+    font-size: 55px;
+    font-weight: 700;
+    text-shadow: 5px 5px 7px rgb(125, 33, 153);
+}
+
+.searchbarNav {
+    margin-bottom: 30px;
+    margin-right: 50px;
+    padding-left: 40px;
 }
 
 .background{
@@ -19,39 +43,34 @@ h1{
 
 .container{
     display: flex;
-    text-align: center;
     justify-content: center;
+    text-align: center;
     flex-direction: row;
-    gap: 25px;
-    margin-top: 30px;
+    margin-top: 40px;
+}
+
+.orderFilters{
+    display: flex;
+    text-align: center;
 }
 
 .reloadCreate{
-    width: 150px;
-    height: 35px;
-    border-radius: 10px;
+    width: 250px;
     margin-right: 20px;
-    color: white;
-    background-color: black;
-    border: 2px solid white;
+    border: none;
     transition-duration: 0.5s;
-    font-weight: bolder;
-    font-size: 15px;    
-    font-family: monospace;
-}
-
-
-.container2{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
+    font-weight: 400;
+    color: white;
+    font-family: Play;
+    font-size: 22px;
 }
 
 .reloadCreate:hover{
     cursor: pointer;
-    background-color: white;
-    color:black;
+    border: none;
+    background-color: black;
+    color:rgb(103, 26, 131);
+    font-weight: 500;
 }
 
 .order{
@@ -65,19 +84,19 @@ h1{
 
 .selectOrderSort{
     border-radius: 15px;
-    height: 32px;
-    width: 210px;
-    margin-right: 8px;
+    width: 180px;
+    height: 35px;
+    margin-right: 100px;
     display: flex;
     justify-content: center;
     text-align: center;
     background-color:black;
-    border: 2px solid white;
+    border: 2px solid  rgba(255, 255, 255, 0.395);
     border-radius: 10px;
     color: white;
-    font-family: monospace;
-    font-size: 18px; 
-    font-weight: bolder;
+    font-family: Play;
+    font-size: 21px; 
+    font-weight: 400;
 }
 
 .selectOrderSort:hover{
@@ -90,16 +109,33 @@ h1{
     row-gap: 40px;
     grid-template-columns: repeat(3, 1fr);
     width: auto;
-    margin-left: 15%;
-    margin-right: 5%;
-    margin-bottom: 2.5%;
-    padding-top: 5px;
 }
 
-.filters{
-    display: flex;    
+
+
+.loader {
+    display: flex; 
+    justify-content: center;
+    text-align: center;
+    margin-top: 100px;
+    margin-left: 140px;
 }
 
-.sort{
-    display: flex;    
+.errorMessage{
+    font-family: Play;
+    font-size: 21px; 
+    font-weight: 400;
+    color: white;
+    padding: 10px;
+}
+
+.errorContainer{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: 3px solid white;
+    border-radius: 10px;
+    background-color: #22223B;
+    width: 100%;
+    margin-left: 205%;
 }
