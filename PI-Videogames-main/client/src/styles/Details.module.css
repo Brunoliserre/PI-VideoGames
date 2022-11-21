@@ -85,4 +85,12 @@ button:hover{
     color:black;
 }
 
+.loader {
+    display: flex; 
+    justify-content: center;
+    text-align: center;
+    margin-top: 100px;
+    margin-left: 140px;
+}
+
 

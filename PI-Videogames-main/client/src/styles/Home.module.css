@@ -19,7 +19,8 @@
 }
 
 .navTitle{    
-    color: rgb(103, 26, 131);
+    padding-left: 10px;
+    color: rgb(247, 244, 248);
     font-family: 'Play';
     font-size: 55px;
     font-weight: 700;
@@ -110,8 +111,6 @@
     grid-template-columns: repeat(3, 1fr);
     width: auto;
 }
-
-
 
 .loader {
     display: flex; 

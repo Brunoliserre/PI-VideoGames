@@ -15,9 +15,8 @@ export default function Landing(){
         <div className={styles.background}>
             <h1 className={styles.title}>Welcome to my Videogame APP</h1>
             <div className={styles.container}>            
-            <h2 className={styles.text}>Find your favorite videogame or create one!</h2>
-            <br/>
-            <h3>This project was created using React, Redux, Express, Sequelize</h3>
+            <p className={styles.text}>Find your favorite videogame or create one!</p>
+            
                 <div className={styles.centerButton}>
                     <button className={styles.button} onClick={handleClick}>
                         START  

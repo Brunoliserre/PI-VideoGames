@@ -15,7 +15,7 @@ export default function Details(props){
 
     const videogame = useSelector(state => state.detail)
 
-    //Component will unmount
+    //Component will unmount -> Resetea el detail
     useEffect(() => {
         return() => {
             dispatch(resetDetail())
@@ -25,7 +25,7 @@ export default function Details(props){
     return(
         <div className={styles.background}>
             {
-                videogame ?
+                videogame?
                 <div>
                     <div  className={styles.container}>
                     <p className={styles.name}>{videogame.name}</p>

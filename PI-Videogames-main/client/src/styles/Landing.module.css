@@ -16,65 +16,55 @@
 
 .container {
     margin: auto;
-    height: 50%;
-    width: 50%;
-    right: 25%;
+    height: 60%;
+    width: 60%;
+    right: 20%;
     position: fixed;
     display: flex;
     flex-direction: column;
 }
 
 .title{
-    padding: 20px;
+    padding: 50px;
     text-align: center;
     color: white;
-    font-size: 50px;
+    font-size: 80px;
     font-family: 'Games', sans-serif;
-    font-weight: 700;
-}
-
-h2 {    
-    padding: 30px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    color: white;
-    font-family: monospace;
-    font-size: 30px;
     font-weight: 500;
 }
 
-h3 {    
-    margin-top: 20px;
+.text {    
+    padding: 80px;
     display: flex;
     text-align: center;
     justify-content: center;
     color: white;
-    font-family: monospace;
-    font-size: 22px;
-    font-weight: 400;
+    font-family: Play;
+    font-size: 35px;
+    font-weight: 500;    
 }
 
 .centerButton{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .button{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 175px;
-    height: 70px;
+    width: 280px;
+    height: 100px;
     border-radius: 15px;
     color: white;
     background-color: black;
     border: 2px solid white;
+    box-shadow: 5px 5px 20px rgb(198, 188, 201);
     transition-duration: 0.5s;
     font-weight: bolder;
-    font-size: 35px;    
+    font-size: 55px;    
     font-family: Play;
 }
 
