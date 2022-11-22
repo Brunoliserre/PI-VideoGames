@@ -33,10 +33,10 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false
     },
-    createdInDb: {
+    createdByUser: {
       type: DataTypes.BOOLEAN,
       default: true
-    }, //Para diferenciar de los que creamos con base de dato
+    },
     image: {
       type: DataTypes.TEXT
     }

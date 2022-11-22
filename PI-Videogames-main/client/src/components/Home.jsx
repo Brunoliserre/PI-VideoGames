@@ -42,7 +42,7 @@ export default function Home () {
         setCurrentPage(1);
     }
 
-    //HANDLE HISTORYVIDEOGAMES
+    //HANDLE CREATEVIDEOGAMES
     const handleClickCreate = () => {
         history.push('/videogame');
     }
@@ -80,15 +80,13 @@ export default function Home () {
             <span className={styles.navTitle}>VIDEOGAMES APP</span>
 
             {/*RELOAD AND CREATE VIDEOGAMES*/} 
-            <a>
-                <button onClick={e=>{handleClickCreate(e)}} className={styles.reloadCreate}>
+              <button onClick={e=>{handleClickCreate(e)}} className={styles.reloadCreate}>
                 Create Videogames
-                </button></a>
-            <a>
-                <button onClick={e=>{handleClick(e)}} className={styles.reloadCreate}>
+              </button>
+              <button onClick={e=>{handleClick(e)}} className={styles.reloadCreate}>
                 Reload Videogames
-                </button>
-            </a>
+              </button>
+            
             {/*SEARCHBAR*/}
             <p className={styles.searchbarNav}><Searchbar/></p>
             </div>  
@@ -97,13 +95,17 @@ export default function Home () {
             <div className={styles.container}>                
                 <div className={styles.orderFilters}>
                 {/*ALPHASORT*/}
-                <select onChange={e => handleAlphaSort(e)} className={styles.selectOrderSort}>
-                    <option default>Order by</option>
+                <select className={styles.selectOrderSort} onChange={e => handleAlphaSort(e)}>
+                    <option default>Order by name</option>
                     <option value='asc'>A-Z</option>
                     <option value='desc'>Z-A</option>
+                </select>  
+                {/*RATINGSORT*/}
+                <select className={styles.selectOrderSort} onChange={e => handleRatingSort(e)}>
+                    <option default>Order by rating</option>
                     <option value='asc'>Best Rated</option>
                     <option value='desc'>Worst Rated</option>
-                </select>                
+                </select>               
                 {/*GENREFILTERS*/}
                 <select onChange={e => handleFilterGenre(e)} className={styles.selectOrderSort}>
                 <option value='All' default>All Genres</option>
